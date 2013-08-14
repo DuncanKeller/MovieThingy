@@ -16,11 +16,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MovieClient
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    public delegate void UpdateMovie(Movie m);
+
     public sealed partial class MainPage : Page
     {
+        
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,6 +34,16 @@ namespace MovieClient
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Movie m = new Movie("moon", UpdateMovie);
+        }
+
+        public void UpdateMovie(Movie m)
+        {
+            testText.Text = m.JsonInfo;
         }
     }
 }

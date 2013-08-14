@@ -10,13 +10,9 @@ using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using Windows.Storage;
 
-//todo
-//json library
-//convert byte array to string
-
 namespace MovieClient
 {
-    class Movie
+    public class Movie
     {
         string name;
         string description;
@@ -25,29 +21,64 @@ namespace MovieClient
         int rating;
 
         string jsonInfo = "";
+        UpdateMovie update;
 
-        public async void GetIMBDInfo()
+        public string JsonInfo
         {
-            string parameters = "q=" + name;
-            byte[] paramStream = Encoding.UTF8.GetBytes(parameters);
+            get { return jsonInfo; }
+        }
 
-            WebRequest movieRequest = WebRequest.CreateHttp("http://mymovieapi.com/");
-            movieRequest.Credentials = CredentialCache.DefaultCredentials;
-            movieRequest.Method = "POST";
+        public Movie(string name, UpdateMovie update)
+        {
+            this.name = name;
+            this.update = update;
 
-            Stream requestStream = await movieRequest.GetRequestStreamAsync();
-            requestStream.Write(paramStream, 0, paramStream.Length);
-            requestStream.Flush();
-            requestStream.Dispose();
+            GetIMBDInfo();
+        }
 
-            WebResponse movieResponse = await movieRequest.GetResponseAsync();
-            Stream responseStream = movieResponse.GetResponseStream();
-            byte[] jsonArr = new byte[responseStream.Length];
-            responseStream.Read(jsonArr, 0, (int)responseStream.Length);
-            responseStream.Dispose();
-            movieResponse.Dispose();
+        public async Task GetIMBDInfo()
+        {
+            try
+            {
+                string parameters = "q=" + name;
+                byte[] paramStream = Encoding.UTF8.GetBytes(parameters);
 
+                WebRequest movieRequest = WebRequest.CreateHttp("http://mymovieapi.com/" + "?" + parameters);
+                movieRequest.Credentials = CredentialCache.DefaultCredentials;
+                movieRequest.Method = "GET";
+                /*
+                Stream requestStream = await movieRequest.GetRequestStreamAsync();
+                requestStream.Write(paramStream, 0, paramStream.Length);
+                requestStream.Flush();
+                //requestStream.Dispose();
+                */
+                WebResponse movieResponse = await movieRequest.GetResponseAsync();
+                Stream responseStream = movieResponse.GetResponseStream();
+                List<byte> jsonArr = new List<byte>();
+                while (true)
+                {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = responseStream.Read(buffer, 0, buffer.Length);
+                    jsonArr.AddRange(buffer.Take(bytesRead));
+                    if (bytesRead < buffer.Length)
+                    {
+                        break;
+                    }
+                }
+                responseStream.Dispose();
+                movieResponse.Dispose();
 
+                jsonInfo = System.Text.Encoding.UTF8.GetString(jsonArr.ToArray(), 0, jsonArr.ToArray().Length);
+            }
+            catch (WebException e)
+            {
+                WebExceptionStatus error = e.Status;
+
+                throw e;
+            }
+
+            update(this);
+            return;
         }
     }
 }

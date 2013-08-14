@@ -25,5 +25,10 @@ namespace MovieClient
         {
             return (string)json[key];
         }
+
+        public static string GetDescription(string name, JObject json)
+        {
+            return GetField(name, json);
+        }
     }
 }
