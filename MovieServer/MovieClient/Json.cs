@@ -18,6 +18,8 @@ namespace MovieClient
     {
         public static JObject ParseJson(string json)
         {
+            json = json.Substring(1, json.Length - 2);
+
             return JObject.Parse(json);
         }
 
@@ -26,9 +28,25 @@ namespace MovieClient
             return (string)json[key];
         }
 
-        public static string GetDescription(string name, JObject json)
+        public static string[] GetFieldArr(string key, JObject json)
         {
-            return GetField(name, json);
+            JArray jArr = (JArray)json[key];
+            string[] arr = new string[jArr.Count];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = (string)jArr[i];
+            }
+            return arr;
+        }
+
+        public static string GetDescription(JObject json)
+        {
+            return GetField("plot_simple", json);
+        }
+
+        public static string[] GetActors(JObject json)
+        {
+            return GetFieldArr("actors", json);
         }
     }
 }

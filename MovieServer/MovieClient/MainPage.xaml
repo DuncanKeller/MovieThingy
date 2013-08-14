@@ -7,9 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#FF00C38E">
+    <Grid Background="#FF659367">
         <Button Content="Button" HorizontalAlignment="Left" Margin="387,103,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click_1"/>
         <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="387,178,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="811" FontSize="30" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="testText2" HorizontalAlignment="Left" Margin="387,275,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="194" Width="811" FontSize="30" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="testText3" HorizontalAlignment="Left" Margin="387,504,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="811" FontSize="30" FontFamily="Global User Interface"/>
 
     </Grid>
 </Page>

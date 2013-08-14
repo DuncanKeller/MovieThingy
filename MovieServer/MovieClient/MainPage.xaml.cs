@@ -43,7 +43,9 @@ namespace MovieClient
 
         public void UpdateMovie(Movie m)
         {
-            testText.Text = m.JsonInfo;
+            testText.Text = m.Name;
+            testText2.Text = m.Description;
+            testText3.Text = m.Actors[0] + ", " + m.Actors[1] + ", " + m.Actors[2];
         }
     }
 }

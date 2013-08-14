@@ -9,6 +9,8 @@ using System.Threading;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 using Windows.Storage;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MovieClient
 {
@@ -16,16 +18,26 @@ namespace MovieClient
     {
         string name;
         string description;
-        string[] tags;
+        string[] actors;
         string genre;
         int rating;
 
-        string jsonInfo = "";
+        JObject jsonInfo;
         UpdateMovie update;
 
-        public string JsonInfo
+        public string Name
         {
-            get { return jsonInfo; }
+            get { return name; }
+        }
+
+        public string Description
+        {
+            get { return description; }
+        }
+
+        public string[] Actors
+        {
+            get { return actors; }
         }
 
         public Movie(string name, UpdateMovie update)
@@ -68,7 +80,10 @@ namespace MovieClient
                 responseStream.Dispose();
                 movieResponse.Dispose();
 
-                jsonInfo = System.Text.Encoding.UTF8.GetString(jsonArr.ToArray(), 0, jsonArr.ToArray().Length);
+                jsonInfo = Json.ParseJson(System.Text.Encoding.UTF8.GetString(jsonArr.ToArray(), 0, jsonArr.ToArray().Length));
+                description = Json.GetDescription(jsonInfo);
+                actors = Json.GetActors(jsonInfo);
+                
             }
             catch (WebException e)
             {
