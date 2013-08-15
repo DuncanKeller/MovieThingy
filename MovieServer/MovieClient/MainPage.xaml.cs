@@ -15,7 +15,10 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.Storage.Pickers;
 using Windows.Storage.Pickers.Provider;
+using System.Threading;
 using System.Threading.Tasks;
+using Windows.System.Threading;
+
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +29,10 @@ namespace MovieClient
     public sealed partial class MainPage : Page
     {
         StorageFolder directory;
+        List<Movie> movies = new List<Movie>();
+        List<Movie> filteredMovies = new List<Movie>();
+
+        string filterTitle = "";
 
         public MainPage()
         {
@@ -35,6 +42,8 @@ namespace MovieClient
             {
                 Init();
             }
+            
+            IAsyncAction filterThread = ThreadPool.RunAsync(FilterMovies);
         }
 
         /// <summary>
@@ -51,16 +60,20 @@ namespace MovieClient
             Json.Init(directory);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Movie m = new Movie("Moon (2009)", UpdateMovie);
+            IReadOnlyList<string> files = await GetSubFiles(directory);
+
+            foreach (string movie in files)
+            {
+                Movie m = new Movie(movie);
+                movies.Add(m);
+            }
         }
 
         public void UpdateMovie(Movie m)
         {
-            testText.Text = m.Name;
-            testText2.Text = m.Description;
-            testText3.Text = m.Actors[0] + ", " + m.Actors[1] + ", " + m.Actors[2];
+            
         }
 
         private async void folderButton_Click(object sender, RoutedEventArgs e)
@@ -110,6 +123,67 @@ namespace MovieClient
             return returnList;
         }
 
-        
+
+        private void FilterMovies(IAsyncAction action)
+        {
+            // add movies to the filtered list if they meet the conditions
+            while (true)
+            {
+                if (filterTitle != string.Empty)
+                {
+                    lock (filteredMovies)
+                    {
+                        List<Movie> removeMe = new List<Movie>();
+
+                        foreach (Movie m in filteredMovies)
+                        {
+                            if (!m.Name.ToLower().Contains(filterTitle.ToLower()))
+                            {
+                                removeMe.Add(m);
+                            }
+                        }
+
+                        foreach (Movie m in movies)
+                        {
+                            if (!filteredMovies.Contains(m))
+                            {
+                                if (m.Name.ToLower().Contains(filterTitle.ToLower()))
+                                {
+                                    filteredMovies.Add(m);
+                                }
+                            }
+                        }
+
+                        foreach (Movie m in removeMe)
+                        {
+                            filteredMovies.Remove(m);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+            filterTitle = title.Text;
+            testFilteredList.Text = "";
+            lock (filteredMovies)
+            {
+                foreach (Movie m in filteredMovies)
+                {
+                    testFilteredList.Text += m.Name + "(" + m.Year + ")";
+                    if (m != filteredMovies[filteredMovies.Count - 1])
+                    {
+                        testFilteredList.Text += ",\r\n";
+                    }
+                }
+            }
+        }
+
+        private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

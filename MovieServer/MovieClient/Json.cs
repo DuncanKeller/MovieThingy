@@ -123,14 +123,6 @@ namespace MovieClient
             return arr;
         }
 
-        public static string GetDescription(JObject json)
-        {
-            return GetField("plot_simple", json);
-        }
-
-        public static string[] GetActors(JObject json)
-        {
-            return GetFieldArr("actors", json);
-        }
+       
     }
 }

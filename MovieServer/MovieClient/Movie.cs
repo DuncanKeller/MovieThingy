@@ -20,9 +20,12 @@ namespace MovieClient
         string name;
         string description;
         string[] actors;
-        int year;
-        string genre;
+        string[] directors;
+        string[] genres;
+        string[] writers;
         int rating;
+        int year;
+        string runtime;
 
         JObject jsonInfo;
         UpdateMovie update;
@@ -42,12 +45,17 @@ namespace MovieClient
             get { return actors; }
         }
 
-        public Movie(string name, UpdateMovie update)
+        public int Year
+        {
+            get { return year; }
+        }
+
+        public Movie(string name)
         {
             this.filename = name;
-            this.name = name.Split(' ')[0];
-            this.year = Int32.Parse(name.Split(' ')[1].Substring(1, 4));
-            this.update = update;
+            string[] parsed = name.Split(' ');
+            this.name = name.Substring(0, name.Length - parsed[parsed.Length - 1].Length);
+            this.year = Int32.Parse(parsed[parsed.Length - 1].Substring(1, 4));
 
             GetIMBDInfo();
         }
@@ -102,11 +110,15 @@ namespace MovieClient
                 throw e;
             }
 
-           
-            description = Json.GetDescription(jsonInfo);
-            actors = Json.GetActors(jsonInfo);
+            runtime = Json.GetField("runtime", jsonInfo);
+            rating = Int32.Parse(Json.GetField("rating", jsonInfo));
+            description = Json.GetField("plot_simple", jsonInfo);
+            actors = Json.GetFieldArr("actors", jsonInfo);
+            directors = Json.GetFieldArr("directors", jsonInfo);
+            genres = Json.GetFieldArr("genres", jsonInfo);
+            writers = Json.GetFieldArr("writers", jsonInfo);
 
-            update(this);
+            //update(this);
             return;
         }
     }

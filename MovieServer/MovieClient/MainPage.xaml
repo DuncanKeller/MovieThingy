@@ -7,12 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#FF659367" Margin="-1,0,1,0">
-        <Button x:Name="testButton" Content="Button" HorizontalAlignment="Left" Margin="387,103,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click_1"/>
-        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="387,178,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="811" FontSize="30" FontFamily="Global User Interface"/>
-        <TextBlock x:Name="testText2" HorizontalAlignment="Left" Margin="387,275,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="194" Width="811" FontSize="30" FontFamily="Global User Interface"/>
-        <TextBlock x:Name="testText3" HorizontalAlignment="Left" Margin="387,504,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="811" FontSize="30" FontFamily="Global User Interface"/>
+    <Grid Background="#FF659367">
+        <Button x:Name="testButton" Content="LoadMovies" HorizontalAlignment="Left" Margin="33,100,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click_1"/>
+        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="33,359,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="355" FontSize="30" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="testText2" HorizontalAlignment="Left" Margin="33,456,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="194" Width="355" FontSize="30" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="testText3" HorizontalAlignment="Left" Margin="33,685,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="355" FontSize="30" FontFamily="Global User Interface"/>
         <Button x:Name="folderButton" Content="Select Folder" HorizontalAlignment="Left" Margin="33,39,0,0" VerticalAlignment="Top" Width="228" Click="folderButton_Click"/>
+        <TextBox x:Name="title" HorizontalAlignment="Left" Margin="33,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="TextBox_TextChanged_1" GotFocus="TextBox_GotFocus_1"/>
+        <TextBlock x:Name="testFilteredList" HorizontalAlignment="Left" Margin="785,83,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="515" Width="355" FontSize="30" FontFamily="Global User Interface"/>
 
     </Grid>
 </Page>
