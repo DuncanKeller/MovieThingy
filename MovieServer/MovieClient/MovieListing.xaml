@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="MovieClient.MovieListing"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MovieClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="80
+    
+    "
+    d:DesignWidth="600
+    ">
+    
+    <Grid>
+        <TextBlock x:Name="title" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="39" Width="580" FontSize="28"/>
+        <TextBlock x:Name="year" Margin="10,49,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="27" FontSize="18" FontFamily="Global User Interface" HorizontalAlignment="Left" Width="113"/>
+        <TextBlock x:Name="rating" Margin="137,49,284,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="27" FontSize="18" FontFamily="Global User Interface"/>
+        <TextBlock x:Name="genre" Margin="0,49,10,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="27" FontSize="18" FontFamily="Global User Interface" HorizontalAlignment="Right" Width="260" TextAlignment="Right"/>
+
+    </Grid>
+</UserControl>

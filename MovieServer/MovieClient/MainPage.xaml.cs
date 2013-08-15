@@ -31,6 +31,7 @@ namespace MovieClient
     public sealed partial class MainPage : Page
     {
         bool requests = true;
+        SolidColorBrush selectedColor;
 
         StorageFolder directory;
         List<Movie> movies = new List<Movie>();
@@ -40,6 +41,8 @@ namespace MovieClient
         string filterTitle = "";
         string filterActors = "";
         string filterDirectors = "";
+        string filterGenres = "";
+
 
         public MainPage()
         {
@@ -51,6 +54,8 @@ namespace MovieClient
             {
                 Init();
             }
+
+            selectedColor = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 150, 200, 150));
             
         }
 
@@ -200,34 +205,33 @@ namespace MovieClient
         private async void FilterMovies(IAsyncAction action)
         {
             // add movies to the filtered list if they meet the conditions
-            //while (true)
+            lock (filteredMovies)
             {
-                lock (filteredMovies)
+                List<Movie> toRemove = new List<Movie>();
+                List<Movie> toAdd = new List<Movie>();
+
+                AddFilter("name", filterTitle, ref toAdd);
+                AddFilter("actors", filterActors, ref toAdd);
+                AddFilter("directors", filterDirectors, ref toAdd);
+                AddFilter("genres", filterGenres, ref toAdd);
+
+                foreach (Movie m in toAdd)
                 {
-                    List<Movie> toRemove = new List<Movie>();
-                    List<Movie> toAdd = new List<Movie>();
-
-                    AddFilter("name", filterTitle, ref toAdd);
-                    AddFilter("actors", filterActors, ref toAdd);
-                    AddFilter("directors", filterDirectors, ref toAdd);
-
-                    foreach (Movie m in toAdd)
-                    {
-                        filteredMovies.Add(m);
-                    }
-
-                    RemoveFilter("name", filterTitle, ref toRemove);
-                    RemoveFilter("actors", filterActors, ref toRemove);
-                    RemoveFilter("directors", filterDirectors, ref toRemove);
-
-                    foreach (Movie m in toRemove)
-                    {
-                        filteredMovies.Remove(m);
-                    }
-
+                    filteredMovies.Add(m);
                 }
-            }
 
+                RemoveFilter("name", filterTitle, ref toRemove);
+                RemoveFilter("actors", filterActors, ref toRemove);
+                RemoveFilter("directors", filterDirectors, ref toRemove);
+                RemoveFilter("genres", filterGenres, ref toRemove);
+
+                foreach (Movie m in toRemove)
+                {
+                    filteredMovies.Remove(m);
+                }
+
+            }
+            
             return;
         }
 
@@ -252,20 +256,23 @@ namespace MovieClient
             RefreshList();
         }
 
+        private async void genres_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterGenres = (genres.SelectedItem as ComboBoxItem).Content.ToString();
+            await ThreadPool.RunAsync(FilterMovies);
+            RefreshList();
+        }
+
         public async void RefreshList()
         {
-            testFilteredList.Text = "";
+            movieList.Items.Clear();
             lock (filteredMovies)
             {
                 sortType();
 
                 foreach (Movie m in filteredMovies)
                 {
-                    testFilteredList.Text += m.Name + "(" + m.Year + ")";
-                    if (m != filteredMovies[filteredMovies.Count - 1])
-                    {
-                        testFilteredList.Text += ",\r\n";
-                    }
+                    movieList.Items.Add(new MovieListing(m));
                 }
             }
         }
@@ -277,20 +284,36 @@ namespace MovieClient
 
         private void sortName_Click(object sender, RoutedEventArgs e)
         {
+            ResetButtonColor();
+            sortName.Background = selectedColor;
+
             sortType = SortByTitle;
             RefreshList();
         }
 
         private void sortYear_Click(object sender, RoutedEventArgs e)
         {
+            ResetButtonColor();
+            sortYear.Background = selectedColor;
+
             sortType = SortByYear;
             RefreshList();
         }
 
         private void sortRating_Click(object sender, RoutedEventArgs e)
         {
+            ResetButtonColor();
+            sortRating.Background = selectedColor;
+
             sortType = SortByRating;
             RefreshList();
+        }
+
+        private void ResetButtonColor()
+        {
+            sortName.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
+            sortYear.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
+            sortRating.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(0, 0, 0, 0));
         }
 
         private void SortByTitle()
@@ -308,6 +331,7 @@ namespace MovieClient
             filteredMovies.Sort(Movie.SortByRating);
         }
 
+        
         
     }
 }

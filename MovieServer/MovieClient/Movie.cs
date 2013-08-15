@@ -40,14 +40,39 @@ namespace MovieClient
             get { return description; }
         }
 
+        public int Year
+        {
+            get { return year; }
+        }
+
+        public string[] Genres
+        {
+            get { return genres; }
+        }
+
+        public string[] Directors
+        {
+            get { return directors; }
+        }
+
+        public string[] Writers
+        {
+            get { return writers; }
+        }
+
         public string[] Actors
         {
             get { return actors; }
         }
 
-        public int Year
+        public double Rating
         {
-            get { return year; }
+            get { return rating; }
+        }
+
+        public string Runtime
+        {
+            get { return runtime; }
         }
 
         public Movie(string name)
