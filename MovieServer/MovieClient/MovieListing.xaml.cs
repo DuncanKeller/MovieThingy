@@ -19,6 +19,12 @@ namespace MovieClient
     public sealed partial class MovieListing : UserControl
     {
         Movie m;
+
+        public Movie Movie
+        {
+            get { return m; }
+        }
+
         public MovieListing(Movie m)
         {
             this.InitializeComponent();

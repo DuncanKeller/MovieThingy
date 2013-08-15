@@ -37,7 +37,7 @@
             <ComboBoxItem Content="War"/>
             <Button Content="Western"/>
         </ComboBox>
-        <ListView x:Name="movieList" HorizontalAlignment="Left" Height="658" Margin="683,100,0,0" VerticalAlignment="Top" Width="673"/>
+        <ListView x:Name="movieList" HorizontalAlignment="Left" Height="658" Margin="683,100,0,0" VerticalAlignment="Top" Width="673" ItemClick="movieList_ItemClick" SelectionChanged="movieList_SelectionChanged"/>
 
     </Grid>
 </Page>

@@ -8,18 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="#FF649664">
-        <Button x:Name="backButton" Content="&lt; Back" HorizontalAlignment="Left" Margin="35,22,0,0" VerticalAlignment="Top" Height="123" Width="165"/>
+        <Button x:Name="backButton" Content="&lt; Back" HorizontalAlignment="Left" Margin="35,22,0,0" VerticalAlignment="Top" Height="123" Width="165" Click="backButton_Click"/>
         <TextBlock x:Name="name" HorizontalAlignment="Left" Margin="218,22,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="110" Width="1114" FontSize="40"/>
         <TextBlock x:Name="year" HorizontalAlignment="Left" Margin="35,168,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="40"/>
         <TextBlock x:Name="rating" HorizontalAlignment="Left" Margin="35,234,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="40"/>
-        <TextBlock x:Name="director" HorizontalAlignment="Left" Margin="35,427,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
-        <TextBlock x:Name="writer" HorizontalAlignment="Left" Margin="35,488,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
-        <TextBlock x:Name="genre" HorizontalAlignment="Left" Margin="35,295,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="40"/>
-        <TextBlock x:Name="plot" HorizontalAlignment="Left" Margin="603,168,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="391" Width="736" FontSize="30"/>
+        <TextBlock x:Name="director" HorizontalAlignment="Left" Margin="35,421,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
+        <TextBlock x:Name="writer" HorizontalAlignment="Left" Margin="35,482,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
+        <TextBlock x:Name="genre" HorizontalAlignment="Left" Margin="35,295,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
+        <TextBlock x:Name="plot" HorizontalAlignment="Left" Margin="603,168,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="497" Width="736" FontSize="30"/>
         <Button x:Name="play" Content="Play Movie" HorizontalAlignment="Left" Margin="1136,674,0,0" VerticalAlignment="Top" Height="84" Width="220"/>
         <Button x:Name="trailer" Content="Watch a Trailer" HorizontalAlignment="Left" Margin="10,705,0,0" VerticalAlignment="Top" Height="53" Width="220"/>
-        <TextBlock x:Name="actors" HorizontalAlignment="Left" Margin="35,549,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
-        <TextBlock x:Name="runtime" HorizontalAlignment="Left" Margin="35,361,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
+        <TextBlock x:Name="actors" HorizontalAlignment="Left" Margin="35,543,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="122" Width="547" FontSize="30"/>
+        <TextBlock x:Name="runtime" HorizontalAlignment="Left" Margin="35,355,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
 
     </Grid>
 </Page>

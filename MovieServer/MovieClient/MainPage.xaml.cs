@@ -331,6 +331,18 @@ namespace MovieClient
             filteredMovies.Sort(Movie.SortByRating);
         }
 
+        private void movieList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+        }
+
+        private void movieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MoviePage page = new MoviePage((movieList.SelectedItem as MovieListing).Movie, this);
+            Window.Current.Content = page;
+        }
+
+
         
         
     }

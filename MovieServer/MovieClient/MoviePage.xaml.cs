@@ -21,9 +21,48 @@ namespace MovieClient
     /// </summary>
     public sealed partial class MoviePage : Page
     {
-        public MoviePage()
+        Movie m;
+        Page returnTo;
+
+        public Movie Movie
+        {
+            get { return m; }
+        }
+
+        public MoviePage(Movie m, Page returnTo)
         {
             this.InitializeComponent();
+            this.m = m;
+            this.returnTo = returnTo;
+
+            name.Text = m.Name;
+            year.Text = "year: " + m.Year;
+            rating.Text = "rating: ";
+            for (int i = 0; i < (int)Math.Round(m.Rating); i++)
+            { rating.Text += "*"; }
+            genre.Text = "genres: ";
+            for (int i = 0; i < m.Genres.Length; i++)
+            {
+                genre.Text += m.Genres[i];
+                if (i < m.Genres.Length - 1)
+                {
+                    genre.Text += ", ";
+                }
+            }
+            runtime.Text = "runtime: " + m.Runtime;
+            director.Text = "director: " + m.Directors[0];
+            writer.Text = "writer: " + m.Writers[0];
+            actors.Text = "actors: ";
+            for (int i = 0; i < m.Actors.Length; i++)
+            {
+                actors.Text += m.Actors[i];
+
+                if (i > 4)
+                { break; }
+                else if(i == 4)
+                { actors.Text += ", ";}
+            }
+            plot.Text = m.Description;
         }
 
         /// <summary>
@@ -33,6 +72,11 @@ namespace MovieClient
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window.Current.Content = returnTo;
         }
     }
 }
