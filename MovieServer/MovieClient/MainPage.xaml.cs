@@ -38,6 +38,8 @@ namespace MovieClient
         SortType sortType;
 
         string filterTitle = "";
+        string filterActors = "";
+        string filterDirectors = "";
 
         public MainPage()
         {
@@ -129,7 +131,7 @@ namespace MovieClient
             return returnList;
         }
 
-        private void AddFilter(string movie, string filter, ref List<Movie> toAdd)
+        private void AddFilter(string filterType, string filter, ref List<Movie> toAdd)
         {
             if (filter != string.Empty)
             {
@@ -138,19 +140,20 @@ namespace MovieClient
                     if (!filteredMovies.Contains(m) &&
                         !toAdd.Contains(m))
                     {
-                        if (Movie.PropertyIsArray(movie))
+                        if (Movie.PropertyIsArray(filterType))
                         {
-                            foreach (string property in m.GetPropertyArray(movie))
+                            foreach (string property in m.GetPropertyArray(filterType))
                             {
                                 if (property.ToLower().Contains(filter.ToLower()))
                                 {
                                     toAdd.Add(m);
+                                    break;
                                 }
                             }
                         }
                         else
                         {
-                            if (m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                            if (m.GetProperty(filterType).ToLower().Contains(filter.ToLower()))
                             {
                                 toAdd.Add(m);
                             }
@@ -160,7 +163,7 @@ namespace MovieClient
             }
         }
 
-        private void RemoveFilter(string movie, string filter, ref List<Movie> toRemove)
+        private void RemoveFilter(string filterType, string filter, ref List<Movie> toRemove)
         {
             if (filter != string.Empty)
             {
@@ -168,21 +171,23 @@ namespace MovieClient
                 {
                     if (!toRemove.Contains(m))
                     {
-                        if (Movie.PropertyIsArray(movie))
+                        if (Movie.PropertyIsArray(filterType))
                         {
-                            bool anyMatches = false;
-                            foreach (string property in m.GetPropertyArray(movie))
+                            bool noMatches = true;
+                            foreach (string property in m.GetPropertyArray(filterType))
                             {
-                                if (m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                                if (property.ToLower().Contains(filter.ToLower()))
                                 {
-                                    continue;
+                                    noMatches = false;
+                                    break;
                                 }
                             }
-                            toRemove.Add(m);
+                            if (noMatches)
+                            { toRemove.Add(m); }
                         }
                         else
                         {
-                            if (!m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                            if (!m.GetProperty(filterType).ToLower().Contains(filter.ToLower()))
                             {
                                 toRemove.Add(m);
                             }
@@ -203,13 +208,17 @@ namespace MovieClient
                     List<Movie> toAdd = new List<Movie>();
 
                     AddFilter("name", filterTitle, ref toAdd);
-
-                    RemoveFilter("name", filterTitle, ref toRemove);
+                    AddFilter("actors", filterActors, ref toAdd);
+                    AddFilter("directors", filterDirectors, ref toAdd);
 
                     foreach (Movie m in toAdd)
                     {
                         filteredMovies.Add(m);
                     }
+
+                    RemoveFilter("name", filterTitle, ref toRemove);
+                    RemoveFilter("actors", filterActors, ref toRemove);
+                    RemoveFilter("directors", filterDirectors, ref toRemove);
 
                     foreach (Movie m in toRemove)
                     {
@@ -226,7 +235,20 @@ namespace MovieClient
         {
             filterTitle = title.Text;
             await ThreadPool.RunAsync(FilterMovies);
+            RefreshList();
+        }
 
+        private async void actors_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            filterActors = actors.Text;
+            await ThreadPool.RunAsync(FilterMovies);
+            RefreshList();
+        }
+
+        private async void directors_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            filterDirectors = directors.Text;
+            await ThreadPool.RunAsync(FilterMovies);
             RefreshList();
         }
 

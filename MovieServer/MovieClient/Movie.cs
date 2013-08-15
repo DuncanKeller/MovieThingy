@@ -170,6 +170,7 @@ namespace MovieClient
                 throw e;
             }
 
+
             runtime = Json.GetFieldArr("runtime", jsonInfo)[0];
             rating = Double.Parse(Json.GetField("rating", jsonInfo));
             description = Json.GetField("plot_simple", jsonInfo);

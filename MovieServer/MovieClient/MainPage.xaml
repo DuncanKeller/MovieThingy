@@ -9,15 +9,14 @@
 
     <Grid Background="#FF659367">
         <Button x:Name="testButton" Content="LoadMovies" HorizontalAlignment="Left" Margin="33,100,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click_1"/>
-        <TextBlock x:Name="testText" HorizontalAlignment="Left" Margin="33,359,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="355" FontSize="30" FontFamily="Global User Interface"/>
-        <TextBlock x:Name="testText2" HorizontalAlignment="Left" Margin="33,456,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="194" Width="355" FontSize="30" FontFamily="Global User Interface"/>
-        <TextBlock x:Name="testText3" HorizontalAlignment="Left" Margin="33,685,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="73" Width="355" FontSize="30" FontFamily="Global User Interface"/>
         <Button x:Name="folderButton" Content="Select Folder" HorizontalAlignment="Left" Margin="33,39,0,0" VerticalAlignment="Top" Width="228" Click="folderButton_Click"/>
         <TextBox x:Name="title" HorizontalAlignment="Left" Margin="33,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="TextBox_TextChanged_1" GotFocus="TextBox_GotFocus_1"/>
         <TextBlock x:Name="testFilteredList" HorizontalAlignment="Left" Margin="683,100,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="658" Width="673" FontSize="30" FontFamily="Global User Interface"/>
         <Button x:Name="sortName" Content="Title" HorizontalAlignment="Left" Margin="683,39,0,0" VerticalAlignment="Top" Width="96" Click="sortName_Click"/>
         <Button x:Name="sortYear" Content="Year" HorizontalAlignment="Left" Margin="784,39,0,0" VerticalAlignment="Top" Width="96" Click="sortYear_Click"/>
-        <Button x:Name="sortRating" Content="Rating" HorizontalAlignment="Left" Margin="885,39,0,0" VerticalAlignment="Top" Width="96" Click="sortRating_Click"/>
+        <Button x:Name="sortRating" Content="Rating" HorizontalAlignment="Left" Margin="879,39,0,0" VerticalAlignment="Top" Width="96" Click="sortRating_Click"/>
+        <TextBox x:Name="actors" HorizontalAlignment="Left" Margin="33,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="actors_TextChanged" GotFocus="TextBox_GotFocus_1"/>
+        <TextBox x:Name="directors" HorizontalAlignment="Left" Margin="33,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="directors_TextChanged" GotFocus="TextBox_GotFocus_1"/>
 
     </Grid>
 </Page>
