@@ -23,7 +23,7 @@ namespace MovieClient
         string[] directors;
         string[] genres;
         string[] writers;
-        int rating;
+        double rating;
         int year;
         string runtime;
 
@@ -171,7 +171,7 @@ namespace MovieClient
             }
 
             runtime = Json.GetFieldArr("runtime", jsonInfo)[0];
-            rating = Int32.Parse(Json.GetField("rating", jsonInfo));
+            rating = Double.Parse(Json.GetField("rating", jsonInfo));
             description = Json.GetField("plot_simple", jsonInfo);
             actors = Json.GetFieldArr("actors", jsonInfo);
             directors = Json.GetFieldArr("directors", jsonInfo);

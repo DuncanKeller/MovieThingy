@@ -109,7 +109,6 @@ namespace MovieClient
 
         public static string GetField(string key, JObject json)
         {
-            string test = json[key];
             return (string)json[key];
         }
 
