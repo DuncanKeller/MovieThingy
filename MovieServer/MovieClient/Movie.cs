@@ -181,5 +181,10 @@ namespace MovieClient
             //update(this);
             return;
         }
+
+        public static int SortByTitle(Movie m1, Movie m2)
+        {
+            return String.Compare(m1.Name, m2.Name, StringComparison.CurrentCultureIgnoreCase);
+        }
     }
 }

@@ -29,6 +29,8 @@ namespace MovieClient
 
     public sealed partial class MainPage : Page
     {
+        bool requests = true;
+
         StorageFolder directory;
         List<Movie> movies = new List<Movie>();
         List<Movie> filteredMovies = new List<Movie>();
@@ -222,6 +224,11 @@ namespace MovieClient
             filterTitle = title.Text;
             await ThreadPool.RunAsync(FilterMovies);
 
+            RefreshList();
+        }
+
+        public async void RefreshList()
+        {
             testFilteredList.Text = "";
             lock (filteredMovies)
             {
@@ -244,6 +251,12 @@ namespace MovieClient
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void sortName_Click(object sender, RoutedEventArgs e)
+        {
+            filteredMovies.Sort(Movie.SortByTitle);
+            RefreshList();
         }
     }
 }
