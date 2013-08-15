@@ -1,42 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="865081e2-ef91-4bd6-9fff-7dea544f08d3"
-            Publisher="CN=Duncan"
-            Version="1.0.0.0" />
-
+  <Identity Name="865081e2-ef91-4bd6-9fff-7dea544f08d3" Publisher="CN=Duncan" Version="1.0.0.0" />
   <Properties>
     <DisplayName>MovieClient</DisplayName>
     <PublisherDisplayName>Duncan</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="MovieClient.App">
-        <VisualElements
-            DisplayName="MovieClient"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="MovieClient"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MovieClient.App">
+      <VisualElements DisplayName="MovieClient" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="MovieClient" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name=".mp4">
+            <EditFlags OpenIsSafe="true" />
+            <SupportedFileTypes>
+              <FileType>.mp4</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name=".json">
+            <SupportedFileTypes>
+              <FileType>.json</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="videosLibrary" />
+    <Capability Name="removableStorage" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="picturesLibrary" />
+    <Capability Name="musicLibrary" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

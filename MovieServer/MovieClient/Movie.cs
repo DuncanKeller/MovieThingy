@@ -16,9 +16,11 @@ namespace MovieClient
 {
     public class Movie
     {
+        string filename;
         string name;
         string description;
         string[] actors;
+        int year;
         string genre;
         int rating;
 
@@ -42,7 +44,9 @@ namespace MovieClient
 
         public Movie(string name, UpdateMovie update)
         {
-            this.name = name;
+            this.filename = name;
+            this.name = name.Split(' ')[0];
+            this.year = Int32.Parse(name.Split(' ')[1].Substring(1, 4));
             this.update = update;
 
             GetIMBDInfo();
@@ -52,38 +56,44 @@ namespace MovieClient
         {
             try
             {
-                string parameters = "q=" + name;
-                byte[] paramStream = Encoding.UTF8.GetBytes(parameters);
-
-                WebRequest movieRequest = WebRequest.CreateHttp("http://mymovieapi.com/" + "?" + parameters);
-                movieRequest.Credentials = CredentialCache.DefaultCredentials;
-                movieRequest.Method = "GET";
-                /*
-                Stream requestStream = await movieRequest.GetRequestStreamAsync();
-                requestStream.Write(paramStream, 0, paramStream.Length);
-                requestStream.Flush();
-                //requestStream.Dispose();
-                */
-                WebResponse movieResponse = await movieRequest.GetResponseAsync();
-                Stream responseStream = movieResponse.GetResponseStream();
-                List<byte> jsonArr = new List<byte>();
-                while (true)
+                if (Json.entries.ContainsKey(filename))
                 {
-                    byte[] buffer = new byte[1024];
-                    int bytesRead = responseStream.Read(buffer, 0, buffer.Length);
-                    jsonArr.AddRange(buffer.Take(bytesRead));
-                    if (bytesRead < buffer.Length)
-                    {
-                        break;
-                    }
+                    jsonInfo = Json.entries[filename];
                 }
-                responseStream.Dispose();
-                movieResponse.Dispose();
+                else
+                {
+                    string parameters = "q=" + name + "&" + "year=" + year;
+                    byte[] paramStream = Encoding.UTF8.GetBytes(parameters);
 
-                jsonInfo = Json.ParseJson(System.Text.Encoding.UTF8.GetString(jsonArr.ToArray(), 0, jsonArr.ToArray().Length));
-                description = Json.GetDescription(jsonInfo);
-                actors = Json.GetActors(jsonInfo);
-                
+                    WebRequest movieRequest = WebRequest.CreateHttp("http://mymovieapi.com/" + "?" + parameters);
+                    movieRequest.Credentials = CredentialCache.DefaultCredentials;
+                    movieRequest.Method = "GET";
+                    /*
+                    Stream requestStream = await movieRequest.GetRequestStreamAsync();
+                    requestStream.Write(paramStream, 0, paramStream.Length);
+                    requestStream.Flush();
+                    //requestStream.Dispose();
+                    */
+                    WebResponse movieResponse = await movieRequest.GetResponseAsync();
+                    Stream responseStream = movieResponse.GetResponseStream();
+                    List<byte> jsonArr = new List<byte>();
+                    while (true)
+                    {
+                        byte[] buffer = new byte[1024];
+                        int bytesRead = responseStream.Read(buffer, 0, buffer.Length);
+                        jsonArr.AddRange(buffer.Take(bytesRead));
+                        if (bytesRead < buffer.Length)
+                        {
+                            break;
+                        }
+                    }
+                    responseStream.Dispose();
+                    movieResponse.Dispose();
+
+                    jsonInfo = Json.ParseJson(System.Text.Encoding.UTF8.GetString(jsonArr.ToArray(), 0, jsonArr.ToArray().Length));
+                    jsonInfo.Add("filename", (JToken)filename);
+                    Json.newEntries.Add(filename, jsonInfo);
+                }
             }
             catch (WebException e)
             {
@@ -91,6 +101,10 @@ namespace MovieClient
 
                 throw e;
             }
+
+           
+            description = Json.GetDescription(jsonInfo);
+            actors = Json.GetActors(jsonInfo);
 
             update(this);
             return;
