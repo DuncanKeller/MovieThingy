@@ -16,6 +16,8 @@
         <TextBox x:Name="title" HorizontalAlignment="Left" Margin="33,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="TextBox_TextChanged_1" GotFocus="TextBox_GotFocus_1"/>
         <TextBlock x:Name="testFilteredList" HorizontalAlignment="Left" Margin="683,100,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="658" Width="673" FontSize="30" FontFamily="Global User Interface"/>
         <Button x:Name="sortName" Content="Title" HorizontalAlignment="Left" Margin="683,39,0,0" VerticalAlignment="Top" Width="96" Click="sortName_Click"/>
+        <Button x:Name="sortYear" Content="Year" HorizontalAlignment="Left" Margin="784,39,0,0" VerticalAlignment="Top" Width="96" Click="sortYear_Click"/>
+        <Button x:Name="sortRating" Content="Rating" HorizontalAlignment="Left" Margin="885,39,0,0" VerticalAlignment="Top" Width="96" Click="sortRating_Click"/>
 
     </Grid>
 </Page>

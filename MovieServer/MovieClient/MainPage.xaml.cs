@@ -26,6 +26,7 @@ using Windows.System.Threading.Core;
 namespace MovieClient
 {
     public delegate void UpdateMovie(Movie m);
+    public delegate void SortType();
 
     public sealed partial class MainPage : Page
     {
@@ -34,12 +35,15 @@ namespace MovieClient
         StorageFolder directory;
         List<Movie> movies = new List<Movie>();
         List<Movie> filteredMovies = new List<Movie>();
+        SortType sortType;
 
         string filterTitle = "";
 
         public MainPage()
         {
             this.InitializeComponent();
+
+            sortType = SortByTitle;
 
             if (directory != null)
             {
@@ -212,7 +216,6 @@ namespace MovieClient
                         filteredMovies.Remove(m);
                     }
 
-                    UpdateMovieList();
                 }
             }
 
@@ -232,6 +235,8 @@ namespace MovieClient
             testFilteredList.Text = "";
             lock (filteredMovies)
             {
+                sortType();
+
                 foreach (Movie m in filteredMovies)
                 {
                     testFilteredList.Text += m.Name + "(" + m.Year + ")";
@@ -243,11 +248,6 @@ namespace MovieClient
             }
         }
 
-        private void UpdateMovieList()
-        {
-            
-        }
-
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
 
@@ -255,8 +255,37 @@ namespace MovieClient
 
         private void sortName_Click(object sender, RoutedEventArgs e)
         {
-            filteredMovies.Sort(Movie.SortByTitle);
+            sortType = SortByTitle;
             RefreshList();
         }
+
+        private void sortYear_Click(object sender, RoutedEventArgs e)
+        {
+            sortType = SortByYear;
+            RefreshList();
+        }
+
+        private void sortRating_Click(object sender, RoutedEventArgs e)
+        {
+            sortType = SortByRating;
+            RefreshList();
+        }
+
+        private void SortByTitle()
+        {
+            filteredMovies.Sort(Movie.SortByTitle);
+        }
+
+        private void SortByYear()
+        {
+            filteredMovies.Sort(Movie.SortByYear);
+        }
+
+        private void SortByRating()
+        {
+            filteredMovies.Sort(Movie.SortByRating);
+        }
+
+        
     }
 }

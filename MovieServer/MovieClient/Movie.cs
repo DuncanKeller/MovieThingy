@@ -170,7 +170,7 @@ namespace MovieClient
                 throw e;
             }
 
-            runtime = Json.GetField("runtime", jsonInfo);
+            runtime = Json.GetFieldArr("runtime", jsonInfo)[0];
             rating = Int32.Parse(Json.GetField("rating", jsonInfo));
             description = Json.GetField("plot_simple", jsonInfo);
             actors = Json.GetFieldArr("actors", jsonInfo);
@@ -185,6 +185,16 @@ namespace MovieClient
         public static int SortByTitle(Movie m1, Movie m2)
         {
             return String.Compare(m1.Name, m2.Name, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        public static int SortByYear(Movie m1, Movie m2)
+        {
+            return String.Compare(m1.Year.ToString(), m2.Year.ToString(), StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        public static int SortByRating(Movie m1, Movie m2)
+        {
+            return String.Compare(m1.rating.ToString(), m2.rating.ToString(), StringComparison.CurrentCultureIgnoreCase);
         }
     }
 }
