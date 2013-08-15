@@ -18,6 +18,7 @@ using Windows.Storage.Pickers.Provider;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.System.Threading;
+using Windows.System.Threading.Core;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -43,7 +44,6 @@ namespace MovieClient
                 Init();
             }
             
-            IAsyncAction filterThread = ThreadPool.RunAsync(FilterMovies);
         }
 
         /// <summary>
@@ -186,10 +186,10 @@ namespace MovieClient
             }
         }
 
-        private void FilterMovies(IAsyncAction action)
+        private async void FilterMovies(IAsyncAction action)
         {
             // add movies to the filtered list if they meet the conditions
-            while (true)
+            //while (true)
             {
                 lock (filteredMovies)
                 {
@@ -209,14 +209,19 @@ namespace MovieClient
                     {
                         filteredMovies.Remove(m);
                     }
+
+                    UpdateMovieList();
                 }
             }
+
+            return;
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        private async void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-
             filterTitle = title.Text;
+            await ThreadPool.RunAsync(FilterMovies);
+
             testFilteredList.Text = "";
             lock (filteredMovies)
             {
@@ -229,6 +234,11 @@ namespace MovieClient
                     }
                 }
             }
+        }
+
+        private void UpdateMovieList()
+        {
+            
         }
 
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
