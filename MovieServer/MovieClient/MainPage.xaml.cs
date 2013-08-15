@@ -123,41 +123,91 @@ namespace MovieClient
             return returnList;
         }
 
+        private void AddFilter(string movie, string filter, ref List<Movie> toAdd)
+        {
+            if (filter != string.Empty)
+            {
+                foreach (Movie m in movies)
+                {
+                    if (!filteredMovies.Contains(m) &&
+                        !toAdd.Contains(m))
+                    {
+                        if (Movie.PropertyIsArray(movie))
+                        {
+                            foreach (string property in m.GetPropertyArray(movie))
+                            {
+                                if (property.ToLower().Contains(filter.ToLower()))
+                                {
+                                    toAdd.Add(m);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                            {
+                                toAdd.Add(m);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void RemoveFilter(string movie, string filter, ref List<Movie> toRemove)
+        {
+            if (filter != string.Empty)
+            {
+                foreach (Movie m in filteredMovies)
+                {
+                    if (!toRemove.Contains(m))
+                    {
+                        if (Movie.PropertyIsArray(movie))
+                        {
+                            bool anyMatches = false;
+                            foreach (string property in m.GetPropertyArray(movie))
+                            {
+                                if (m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                                {
+                                    continue;
+                                }
+                            }
+                            toRemove.Add(m);
+                        }
+                        else
+                        {
+                            if (!m.GetProperty(movie).ToLower().Contains(filter.ToLower()))
+                            {
+                                toRemove.Add(m);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         private void FilterMovies(IAsyncAction action)
         {
             // add movies to the filtered list if they meet the conditions
             while (true)
             {
-                if (filterTitle != string.Empty)
+                lock (filteredMovies)
                 {
-                    lock (filteredMovies)
+                    List<Movie> toRemove = new List<Movie>();
+                    List<Movie> toAdd = new List<Movie>();
+
+                    AddFilter("name", filterTitle, ref toAdd);
+
+                    RemoveFilter("name", filterTitle, ref toRemove);
+
+                    foreach (Movie m in toAdd)
                     {
-                        List<Movie> removeMe = new List<Movie>();
+                        filteredMovies.Add(m);
+                    }
 
-                        foreach (Movie m in filteredMovies)
-                        {
-                            if (!m.Name.ToLower().Contains(filterTitle.ToLower()))
-                            {
-                                removeMe.Add(m);
-                            }
-                        }
-
-                        foreach (Movie m in movies)
-                        {
-                            if (!filteredMovies.Contains(m))
-                            {
-                                if (m.Name.ToLower().Contains(filterTitle.ToLower()))
-                                {
-                                    filteredMovies.Add(m);
-                                }
-                            }
-                        }
-
-                        foreach (Movie m in removeMe)
-                        {
-                            filteredMovies.Remove(m);
-                        }
+                    foreach (Movie m in toRemove)
+                    {
+                        filteredMovies.Remove(m);
                     }
                 }
             }

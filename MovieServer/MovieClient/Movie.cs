@@ -60,6 +60,66 @@ namespace MovieClient
             GetIMBDInfo();
         }
 
+        public static bool PropertyIsArray(string p)
+        {
+            switch (p.ToLower())
+            {
+                case "name":
+                    return false;
+                case "year":
+                    return false;
+                case "description":
+                    return false;
+                case "runtime":
+                    return false;
+                case "rating":
+                    return false;
+                case "actors":
+                    return true;
+                case "writers":
+                    return true;
+                case "directors":
+                    return true;
+                case "genres":
+                    return true;
+            }
+            throw new Exception("hey, that doesn't match!");
+        }
+
+        public string GetProperty(string p)
+        {
+            switch (p.ToLower())
+            {
+                case "name":
+                    return Name;
+                case "year":
+                    return Year.ToString();
+                case "description":
+                    return Description;
+                case "runtime":
+                    return runtime;
+                case "rating":
+                    return rating.ToString();
+            }
+            throw new Exception("hey, that doesn't match!");
+        }
+
+        public string[] GetPropertyArray(string p)
+        {
+            switch (p.ToLower())
+            {
+                case "actors":
+                    return actors;
+                case "writers":
+                    return writers;
+                case "directors":
+                    return directors;
+                case "genres":
+                    return genres;
+            }
+            throw new Exception("hey, that doesn't match!");
+        }
+
         public async Task GetIMBDInfo()
         {
             try
