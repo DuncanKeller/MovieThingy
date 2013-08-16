@@ -22,6 +22,7 @@ namespace MovieClient
     public sealed partial class RemotePage : Page
     {
         Page page;
+        bool muted = false;
 
         public RemotePage(Page p)
         {
@@ -45,6 +46,52 @@ namespace MovieClient
             {
                 Window.Current.Content = page;
             }
+        }
+
+        private void play_pause_Click(object sender, RoutedEventArgs e)
+        {
+            Network.SendMessage("play");
+        }
+
+        private void stop_Click(object sender, RoutedEventArgs e)
+        {
+            Network.SendMessage("stop");
+        }
+
+        private void rewind_Click(object sender, RoutedEventArgs e)
+        {
+            Network.SendMessage("rewind");
+        }
+
+        private void fastForward_Click(object sender, RoutedEventArgs e)
+        {
+            Network.SendMessage("forward");
+        }
+
+        private void mute_Click(object sender, RoutedEventArgs e)
+        {
+            Network.SendMessage("mute");
+
+            muted = !muted;
+            if (muted)
+            {
+                //mute.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(100, 255, 255, 255));
+                mute.Content = "unmute";
+                //mute.Foreground.Opacity = 0.5;
+                volume.Opacity = 0.3;
+            }
+            else
+            {
+                //mute.BorderBrush = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 255, 255));
+                mute.Content = "mute";
+                //mute.Foreground.Opacity = 1;
+                volume.Opacity = 1;
+            }
+        }
+
+        private void volume_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Network.SendMessage("volume-" + e.NewValue.ToString());
         }
     }
 }

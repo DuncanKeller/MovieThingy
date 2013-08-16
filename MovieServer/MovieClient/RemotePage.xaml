@@ -8,12 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="#FF649664" SizeChanged="Grid_SizeChanged_1">
-        <Button x:Name="play_pause" Content="&gt; / ||" HorizontalAlignment="Left" Margin="54,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="104" Width="138"/>
-        <Button x:Name="mute" Content="mute" HorizontalAlignment="Left" Margin="54,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="56" Width="138"/>
-        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="54,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="56" Width="138"/>
-        <Button x:Name="rewind" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="54,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.333" Height="56" Width="63"/>
-        <Button x:Name="fastForward" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="129,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.333" Height="56" Width="63"/>
-        <Slider x:Name="volume" HorizontalAlignment="Left" Margin="97,411,0,0" VerticalAlignment="Top" Width="46" Orientation="Vertical" Height="286" Value="50" BorderThickness="0" Foreground="#FF344D38" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="play_pause" Content="&gt; / ||" HorizontalAlignment="Left" Margin="54,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="104" Width="138" Click="play_pause_Click"/>
+        <Button x:Name="mute" Content="mute" HorizontalAlignment="Left" Margin="54,324,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="56" Width="138" Click="mute_Click"/>
+        <Button x:Name="stop" Content="stop" HorizontalAlignment="Left" Margin="54,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.509" Height="56" Width="138" Click="stop_Click"/>
+        <Button x:Name="rewind" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="54,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.333" Height="56" Width="63" Click="rewind_Click"/>
+        <Button x:Name="fastForward" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="129,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.333" Height="56" Width="63" Click="fastForward_Click"/>
+        <Slider x:Name="volume" HorizontalAlignment="Left" Margin="97,411,0,0" VerticalAlignment="Top" Width="46" Orientation="Vertical" Height="286" Value="50" BorderThickness="0" Foreground="#FF344D38" RenderTransformOrigin="0.5,0.5" ValueChanged="volume_ValueChanged">
             <Slider.RenderTransform>
                 <CompositeTransform ScaleX="3"/>
             </Slider.RenderTransform>

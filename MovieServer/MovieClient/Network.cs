@@ -22,7 +22,7 @@ namespace MovieClient
         public static DataWriter messageWriter;
 
 
-        private static async void SendMessage(string message)
+        public static async void SendMessage(string message)
         {
             try
             {
