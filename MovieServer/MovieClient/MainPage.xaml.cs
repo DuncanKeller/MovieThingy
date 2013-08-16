@@ -43,6 +43,8 @@ namespace MovieClient
         string filterDirectors = "";
         string filterGenres = "";
 
+        double originalSize;
+        RemotePage remotePage;
 
         public MainPage()
         {
@@ -57,6 +59,8 @@ namespace MovieClient
 
             selectedColor = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 150, 200, 150));
             
+            remotePage = new RemotePage(this);
+            originalSize = Window.Current.Bounds.Width;
         }
 
         /// <summary>
@@ -259,6 +263,8 @@ namespace MovieClient
         private async void genres_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             filterGenres = (genres.SelectedItem as ComboBoxItem).Content.ToString();
+            if (filterGenres.ToLower() == "none")
+            { filterGenres = ""; }
             await ThreadPool.RunAsync(FilterMovies);
             RefreshList();
         }
@@ -338,8 +344,19 @@ namespace MovieClient
 
         private void movieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MoviePage page = new MoviePage((movieList.SelectedItem as MovieListing).Movie, this);
-            Window.Current.Content = page;
+            if (movieList.SelectedItem != null)
+            {
+                MoviePage page = new MoviePage((movieList.SelectedItem as MovieListing).Movie, this);
+                Window.Current.Content = page;
+            }
+        }
+
+        private void Grid_SizeChanged_1(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < originalSize / 2)
+            {
+                Window.Current.Content = remotePage;
+            }
         }
 
 

@@ -27,24 +27,29 @@ namespace MovieServer
             {
                 MessageWebSocket webSock = new MessageWebSocket();
                 webSock.Control.MessageType = SocketMessageType.Utf8; 
-                webSock.MessageReceived += MessageRecieved;
+                //webSock.MessageReceived += MessageRecieved;
             }
         }
 
-        public void MessageRecieved(MessageWebSocket sender, 
-            MessageWebSocketMessageReceivedEventArgs args)
+        public void StartServer(HTTPContext context)
         {
-            try
-            {
-                using (DataReader reader = args.GetDataReader())
-                {
-                    string command = reader.ReadString(reader.UnconsumedBufferLength);
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+
         }
+
+        //public void MessageRecieved(MessageWebSocket sender, 
+        //    MessageWebSocketMessageReceivedEventArgs args)
+        //{
+        //    try
+        //    {
+        //        using (DataReader reader = args.GetDataReader())
+        //        {
+        //            string command = reader.ReadString(reader.UnconsumedBufferLength);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw e;
+        //    }
+        //}
     }
 }

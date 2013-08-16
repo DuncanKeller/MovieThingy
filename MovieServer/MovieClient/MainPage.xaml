@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#FF649664">
+    <Grid Background="#FF649664" SizeChanged="Grid_SizeChanged_1">
         <Button x:Name="testButton" Content="LoadMovies" HorizontalAlignment="Left" Margin="33,100,0,0" VerticalAlignment="Top" Width="228" Click="Button_Click_1"/>
         <Button x:Name="folderButton" Content="Select Folder" HorizontalAlignment="Left" Margin="33,39,0,0" VerticalAlignment="Top" Width="228" Click="folderButton_Click"/>
         <TextBox x:Name="title" HorizontalAlignment="Left" Margin="33,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="TextBox_TextChanged_1" GotFocus="TextBox_GotFocus_1"/>
@@ -17,6 +17,7 @@
         <TextBox x:Name="actors" HorizontalAlignment="Left" Margin="33,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="actors_TextChanged" GotFocus="TextBox_GotFocus_1"/>
         <TextBox x:Name="directors" HorizontalAlignment="Left" Margin="33,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" TextChanged="directors_TextChanged" GotFocus="TextBox_GotFocus_1"/>
         <ComboBox x:Name="genres" HorizontalAlignment="Left" Margin="33,398,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="genres_SelectionChanged">
+            <ComboBoxItem Content="NONE"/>
             <ComboBoxItem Content="Action"/>
             <ComboBoxItem Content="Adventure"/>
             <ComboBoxItem Content="Animation"/>
@@ -35,7 +36,7 @@
             <ComboBoxItem Content="Sci-Fi"/>
             <ComboBoxItem Content="Thriller"/>
             <ComboBoxItem Content="War"/>
-            <Button Content="Western"/>
+            <ComboBoxItem Content="Western"/>
         </ComboBox>
         <ListView x:Name="movieList" HorizontalAlignment="Left" Height="658" Margin="683,100,0,0" VerticalAlignment="Top" Width="673" ItemClick="movieList_ItemClick" SelectionChanged="movieList_SelectionChanged"/>
 

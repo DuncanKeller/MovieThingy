@@ -32,13 +32,14 @@ namespace MovieClient
             title.Text = m.Name;
             year.Text = m.Year.ToString();
 
-            if (m.Genres.Length > 1)
+            genre.Text = "";
+            for (int i = 0; i < m.Genres.Length; i++)
             {
-                genre.Text = m.Genres[0] + "/" + m.Genres[1];
-            }
-            else
-            {
-                genre.Text = m.Genres[0];
+                genre.Text += m.Genres[i];
+                if (i < m.Genres.Length - 1)
+                {
+                    genre.Text += ", ";
+                }
             }
 
             rating.Text = "";
