@@ -360,7 +360,5 @@ namespace MovieClient
         }
 
 
-        
-        
     }
 }

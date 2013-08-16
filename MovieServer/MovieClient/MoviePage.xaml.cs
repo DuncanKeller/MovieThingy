@@ -77,57 +77,6 @@ namespace MovieClient
         {
         }
 
-        private async void SendPlay()
-        {
-            try
-            {
-                string address = "192.168.1.1";
-                MessageWebSocket webSocket = Network.messageWebSocket;
-
-                if (webSocket == null)
-                {
-                    Uri server = new Uri(address);
-
-                    webSocket = new MessageWebSocket();
-
-                    // callbacks
-                    webSocket.Control.MessageType = SocketMessageType.Utf8;
-                    webSocket.MessageReceived += MessageReceived;
-                    webSocket.Closed += Closed;
-
-                    // connect
-                    await webSocket.ConnectAsync(server);
-                    Network.messageWebSocket = webSocket;
-                    Network.messageWriter = new DataWriter(webSocket.OutputStream);
-                }
-
-                string message = "play";
-
-                Network.messageWriter.WriteString(message);
-                await Network.messageWriter.StoreAsync();
-
-            }
-            catch (Exception e) // For debugging
-            {
-                string error = e.Message;
-            }
-
-        }
-
-        private void MessageReceived(MessageWebSocket sender, MessageWebSocketMessageReceivedEventArgs args)
-        {
-
-        }
-
-        private void Closed(IWebSocket sender, WebSocketClosedEventArgs args)
-        {
-            if (Network.messageWebSocket != null)
-            {
-                Network.messageWebSocket.Dispose();
-            }
-
-        }
-
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             Window.Current.Content = returnTo;
