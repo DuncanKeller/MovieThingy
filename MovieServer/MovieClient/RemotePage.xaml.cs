@@ -21,6 +21,7 @@ namespace MovieClient
     /// </summary>
     public sealed partial class RemotePage : Page
     {
+        bool paused = false;
         Page page;
         bool muted = false;
 
@@ -50,7 +51,15 @@ namespace MovieClient
 
         private void play_pause_Click(object sender, RoutedEventArgs e)
         {
-            Network.SendMessage("play");
+            if (paused)
+            {
+                Network.SendMessage("play");
+            }
+            else
+            {
+                Network.SendMessage("pause");
+            }
+            paused = !paused;
         }
 
         private void stop_Click(object sender, RoutedEventArgs e)
@@ -91,7 +100,7 @@ namespace MovieClient
 
         private void volume_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            Network.SendMessage("volume-" + e.NewValue.ToString());
+            Network.SendMessage("volume>" + e.NewValue.ToString());
         }
     }
 }

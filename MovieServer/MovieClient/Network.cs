@@ -82,8 +82,8 @@ namespace MovieClient
                     Network.messageWebSocket = webSocket;
                     Network.messageWriter = new DataWriter(webSocket.OutputStream);
                 }
-
-                Network.messageWriter.WriteString(message);
+                messageWriter.WriteUInt32(messageWriter.MeasureString(message));
+                messageWriter.WriteString(message);
                 await Network.messageWriter.StoreAsync();
 
             }

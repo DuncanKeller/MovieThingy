@@ -54,9 +54,9 @@ namespace MovieServer
             directory = await picker.PickSingleFolderAsync();
         }
 
-        public void PlayAMovieYouDonkus()
+        public void PlayAMovieYouDonkus(string name)
         {
-            
+            FindMovie(name);
         }
 
         public bool TypeSupported(string type)

@@ -8,11 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="SetDirectory" Content="Set Dir" HorizontalAlignment="Left" Margin="106,27,0,0" VerticalAlignment="Top" Height="175" Width="467" Click="SetDirectory_Click"/>
+        <Button x:Name="SetDirectory" Content="Set Dir" HorizontalAlignment="Left" Margin="106,27,0,0" VerticalAlignment="Top" Height="53" Width="277" Click="SetDirectory_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="761,-94,0,0" VerticalAlignment="Top" Width="100"/>
-        <MediaElement x:Name="moviePlaya" HorizontalAlignment="Left" Height="394" Margin="322,287,0,0" VerticalAlignment="Top" Width="800" BufferingProgressChanged="moviePlaya_BufferingProgressChanged" CurrentStateChanged="moviePlaya_CurrentStateChanged"/>
-        <Button x:Name="testButton" Content="Play Ducktales" HorizontalAlignment="Left" Margin="642,27,0,0" VerticalAlignment="Top" Width="281" Click="testButton_Click"/>
-        <TextBlock x:Name="bufferAmnt" HorizontalAlignment="Left" Margin="642,94,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="40" Width="245" FontSize="36"/>
+        <MediaElement x:Name="moviePlaya" HorizontalAlignment="Left" Height="364" Margin="35,238,0,0" VerticalAlignment="Top" Width="546" BufferingProgressChanged="moviePlaya_BufferingProgressChanged" CurrentStateChanged="moviePlaya_CurrentStateChanged"/>
+        <Button x:Name="testButton" Content="Play Ducktales" HorizontalAlignment="Left" Margin="102,89,0,0" VerticalAlignment="Top" Width="281" Click="testButton_Click"/>
+        <TextBlock x:Name="bufferAmnt" HorizontalAlignment="Left" Margin="288,127,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="40" Width="245" FontSize="36"/>
+        <TextBlock x:Name="netTest" HorizontalAlignment="Left" Margin="654,65,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="650" Width="672" FontSize="36"/>
 
     </Grid>
 </Page>
