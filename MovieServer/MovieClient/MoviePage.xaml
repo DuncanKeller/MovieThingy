@@ -17,7 +17,7 @@
         <TextBlock x:Name="genre" HorizontalAlignment="Left" Margin="35,295,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
         <TextBlock x:Name="plot" HorizontalAlignment="Left" Margin="603,168,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="497" Width="736" FontSize="30"/>
         <Button x:Name="play" Content="Play Movie" HorizontalAlignment="Left" Margin="1136,674,0,0" VerticalAlignment="Top" Height="84" Width="220"/>
-        <Button x:Name="trailer" Content="Watch a Trailer" HorizontalAlignment="Left" Margin="10,705,0,0" VerticalAlignment="Top" Height="53" Width="220"/>
+        <Button x:Name="trailer" Content="Watch a Trailer" HorizontalAlignment="Left" Margin="10,705,0,0" VerticalAlignment="Top" Height="53" Width="220" Click="trailer_Click"/>
         <TextBlock x:Name="actors" HorizontalAlignment="Left" Margin="35,543,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="122" Width="547" FontSize="30"/>
         <TextBlock x:Name="runtime" HorizontalAlignment="Left" Margin="35,355,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="61" Width="547" FontSize="30"/>
 

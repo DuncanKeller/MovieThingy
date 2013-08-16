@@ -21,9 +21,14 @@ namespace MovieClient
     /// </summary>
     public sealed partial class TrailerPage : Page
     {
-        public TrailerPage()
+        Page returnTo;
+        public TrailerPage(Page returnTo, Uri movieToPlay)
         {
             this.InitializeComponent();
+            this.returnTo = returnTo;
+
+            videoPlayer.Source = movieToPlay;
+            videoPlayer.Play();
         }
 
         /// <summary>
@@ -33,6 +38,12 @@ namespace MovieClient
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            videoPlayer.Stop();
+            Window.Current.Content = returnTo;
         }
     }
 }

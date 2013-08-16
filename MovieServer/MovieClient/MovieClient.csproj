@@ -128,6 +128,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="MovieClient_TemporaryKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
@@ -166,6 +167,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MyToolkit">
+      <HintPath>..\packages\MyToolkit.1.20.0\lib\netcore45\MyToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Newtonsoft.Json.dll</HintPath>

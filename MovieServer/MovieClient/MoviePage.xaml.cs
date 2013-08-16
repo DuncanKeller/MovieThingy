@@ -81,5 +81,12 @@ namespace MovieClient
         {
             Window.Current.Content = returnTo;
         }
+
+        private async void trailer_Click(object sender, RoutedEventArgs e)
+        {
+            Uri videoUri = await Network.GetVideo(m);
+            TrailerPage page = new TrailerPage(this, videoUri);
+            Window.Current.Content = page;
+        }
     }
 }

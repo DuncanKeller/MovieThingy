@@ -9,7 +9,7 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <MediaElement x:Name="videoPlayer" HorizontalAlignment="Left" Height="631" VerticalAlignment="Top" Width="1356" Margin="0,127,0,0"/>
-        <Button x:Name="back" Content="&lt; Back" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="96" Width="108"/>
+        <Button x:Name="back" Content="&lt; Back" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="96" Width="108" Click="back_Click"/>
 
     </Grid>
 </Page>

@@ -31,10 +31,10 @@ namespace MovieServer
             }
         }
 
-        public void StartServer(HTTPContext context)
-        {
+        //public void StartServer(HTTPContext context)
+        //{
 
-        }
+        //}
 
         //public void MessageRecieved(MessageWebSocket sender, 
         //    MessageWebSocketMessageReceivedEventArgs args)
