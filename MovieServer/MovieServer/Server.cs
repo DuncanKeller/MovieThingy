@@ -76,6 +76,7 @@ namespace MovieServer
                         return;
                     }
                     string message = reader.ReadString(actualStringLength);
+                    RunCommand(message);
                 }
             }
             catch (Exception e)
