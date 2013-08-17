@@ -30,7 +30,6 @@ namespace MovieClient
         public static DataWriter messageWriter;
         static string url_template = "http://ajax.googleapis.com/ajax/services/search/web?v=2.0&rsz=2&safe=active&q={0}&start={1}";
 
-
         private static async Task<string> GetVidID(string m, string y)
         {
             string query = m + " " + y + " trailer youtube";
@@ -105,7 +104,6 @@ namespace MovieClient
             {
                 Network.messageWebSocket.Dispose();
             }
-
         }
     }
 }
