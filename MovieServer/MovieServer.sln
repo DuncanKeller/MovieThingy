@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieServer", "MovieServer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieClient", "MovieClient\MovieClient.csproj", "{575F92E1-DF4E-482F-AE5B-A0C7E4446D9E}"
 EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "MovieClientJs", "MovieClientJs\MovieClientJs.jsproj", "{6EBDAD03-A808-4CD1-9904-C0FF22B29351}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,30 @@ Global
 		{575F92E1-DF4E-482F-AE5B-A0C7E4446D9E}.Release|x86.ActiveCfg = Release|x86
 		{575F92E1-DF4E-482F-AE5B-A0C7E4446D9E}.Release|x86.Build.0 = Release|x86
 		{575F92E1-DF4E-482F-AE5B-A0C7E4446D9E}.Release|x86.Deploy.0 = Release|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|ARM.Build.0 = Debug|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|ARM.Deploy.0 = Debug|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x64.ActiveCfg = Debug|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x64.Build.0 = Debug|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x64.Deploy.0 = Debug|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x86.ActiveCfg = Debug|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x86.Build.0 = Debug|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Debug|x86.Deploy.0 = Debug|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|ARM.ActiveCfg = Release|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|ARM.Build.0 = Release|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|ARM.Deploy.0 = Release|ARM
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x64.ActiveCfg = Release|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x64.Build.0 = Release|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x64.Deploy.0 = Release|x64
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x86.ActiveCfg = Release|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x86.Build.0 = Release|x86
+		{6EBDAD03-A808-4CD1-9904-C0FF22B29351}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
